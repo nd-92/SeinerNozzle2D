@@ -1,3 +1,9 @@
+*.sh
+*.slurm
+*.out
 laminar/*msh
 laminar/constant/polyMesh/
 laminar/processor*
+APE/*.dat
+APE/Absorption/*dat
+APE/BaseFlow/*dat
