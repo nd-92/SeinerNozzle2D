@@ -1,0 +1,73 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  7
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSchemes;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+interpolationScheme     cubic;
+
+snGradScheme            uncorrected;
+
+limitType               cellLimited;
+
+ddtSchemes
+{
+    default             backward;
+}
+
+gradSchemes
+{
+    default             $limitType Gauss $interpolationScheme 1.0;
+    // default             Gauss linear;
+}
+
+divSchemes
+{
+    default             none;
+
+    div(devRhoReff)     Gauss $interpolationScheme;
+
+    div((devRhoReff&U)) Gauss $interpolationScheme;
+
+    dbns
+    {
+        limiter         Wang;
+        flux            bui;
+        epsilonMin      1.0;
+    }
+}
+
+laplacianSchemes
+{
+    default             Gauss $interpolationScheme $snGradScheme;
+}
+
+interpolationSchemes
+{
+    default             $interpolationScheme;
+}
+
+snGradSchemes
+{
+    default         	$snGradScheme;
+}
+
+wallDist
+{
+    method              meshWave;
+    nRequired           true;
+}
+
+// ************************************************************************* //
+
