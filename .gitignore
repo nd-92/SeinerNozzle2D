@@ -5,7 +5,9 @@
 laminar/*.msh
 laminar/constant/polyMesh/
 laminar/processor*
-laminar/0.*/
+laminar/*.*/
+laminar/*e-*
+laminar/*e+*
 
 APE/*.dat
 APE/Absorption/*dat
