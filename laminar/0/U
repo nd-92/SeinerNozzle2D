@@ -1,14 +1,14 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2212                                  |
+|  \\    /   O peration     | Version:  2312                                  |
 |   \\  /    A nd           | Website:  www.openfoam.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
     version     2.0;
-    format      ascii;
+    format      binary;
     arch        "LSB;label=32;scalar=64";
     class       volVectorField;
     location    "0";
@@ -22,18 +22,14 @@ internalField   uniform (3.34563017401507 0 0);
 
 boundaryField
 {
+    frontAndBack
+    {
+        type            empty;
+    }
     inlet
     {
         type            pressureInletOutletVelocity;
         value           uniform (3.34563017401507 0 0);
-        // type            turbulentDFSEMInlet;
-        // delta           0.09144;
-        // nCellPerEddy    5;
-        // mapMethod       nearestCell;
-        // value           uniform (0 0 0);
-        // R               uniform (1 0 0 1 0 1);
-        // U               uniform (3.34563017401507 0 0);
-        // L               uniform 0;
     }
     walls
     {
@@ -44,10 +40,6 @@ boundaryField
         type            freestreamVelocity;
         freestreamValue uniform (3.34563017401507 0 0);
         value           uniform (3.34563017401507 0 0);
-    }
-    frontAndBack
-    {
-        type            empty;
     }
 }
 
